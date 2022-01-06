@@ -1,33 +1,114 @@
-<% layout('layouts/boilerplate')%>
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="container d-flex justify-content-center align-items-center mt-5">
-    <div class="row">
-        <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
-            <div class="card shadow">
-                <img src="https://images.unsplash.com/photo-1571863533956-01c88e79957e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80"
-                    alt="" class="card-img-top" />
-                <div class="card-body">
-                    <h5 class="card-title">Login</h5>
-                    <form action="/login" method="POST" class="validated-form" novalidate>
-                        <div class="mb-3">
-                            <label class="form-label" for="username">Username</label>
-                            <input class="form-control" type="text" id="username" name="username" autofocus required>
-                            <div class="valid-feedback">
-                                Looks good!
-                            </div>
-                        </div>
+<head>
+    <meta charset="UTF-8">
+    <title>Login/Registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-                        <div class="mb-3">
-                            <label class="form-label" for="password">Password</label>
-                            <input class="form-control" type="password" id="password" name="password" required>
-                            <div class="valid-feedback">
-                                Looks good!
-                            </div>
-                        </div>
-                        <button class="btn btn-success btn-block">Login</button>
-                    </form>
+  <script>
+    window.onload = function () {
+      $("#clkbtn").click();
+    }
+  </script> -->
+</head>
+
+<body>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">YelpCamp</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="/">Home</a>
+                    <a class="nav-link" href="/campgrounds">Campgrounds</a>
+                    <a class="nav-link" href="/campgrounds/new">New Campground</a>
+                </div>
+                <div class="navbar-nav ml-auto">
+                    <% if(!currentUser) {%>
+                        <a class="nav-link" href="/login">Login</a>
+                        <a class="nav-link" href="/register">Register</a>
+                        <% } else {%>
+                            <a class="nav-link" href="/logout">Logout</a>
+                            <% } %>
                 </div>
             </div>
         </div>
+    </nav>
+    <div class="cont">
+        <div class="form sign-in">
+            <form action="/login" method="post" class="validated-form" novalidate>
+                <h2>Welcome back!</h2>
+                <label class="form-label">
+                    <span>Username</span>
+                    <input class="form-control" type="text" id="username" name="username" required>
+                </label>
+                <label>
+                    <span>Password</span>
+                    <input class="form-control" type="password" id="password" name="password" required>
+                </label>
+                <p class="forgot-pass">Forgot password?</p>
+                <button class="submit">Sign In</button>
+            </form>
+        </div>
+        <div class="sub-cont">
+            <div class="img">
+                <div class="img__text m--up">
+                    <h2>New here?</h2>
+                    <p>Sign up and discover great amount of new opportunities!</p>
+                </div>
+                <div class="img__text m--in">
+                    <h2>One of us?</h2>
+                    <p>If you already has an account, just sign in. We've missed you!</p>
+                </div>
+                <div class="img__btn" id="clkbtn">
+                    <span class="m--up">Sign Up</span>
+                    <span class="m--in">Sign In</span>
+                </div>
+            </div>
+            <form action="/signup" method="post" novalidate class="validated-form">
+                <div class="form sign-up">
+                    <h2>Time to feel like home!!</h2>
+                    <label>
+                        <span>Username</span>
+                        <input class="form-control" type="text" id="username" name="username" required>
+                    </label>
+                    <label>
+                        <span>Email</span>
+                        <input class="form-control" type="email" id="email" name="email" required>
+                    </label>
+                    <label>
+                        <span>Password</span>
+                        <input class="form-control" type="password" id="password" name="password" required>
+                    </label>
+                    <button class="submit">Sign Up</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
+    <footer class="footer bg-dark py-3 mt-0">
+        <div class="container">
+            <span class="text-muted">&copy; YelpCamp 2022 - By Hemang Kinra</span>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
+    <script src="/javascripts/script.js"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+
+
+</body>
+
+</html>
